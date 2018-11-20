@@ -1,6 +1,6 @@
 type Query {
   packageName: String!
-  article: Article!
+  article(search: String!): Article!
 }
 
 type Article {
