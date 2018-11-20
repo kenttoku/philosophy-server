@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenttoku/philosophy-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kenttoku/philosophy-server/issues"
+  },
+  "homepage": "https://github.com/kenttoku/philosophy-server#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "graphql-yoga": "^1.16.7",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}
