@@ -24,7 +24,7 @@ const getLink = async search => {
       return false;
     }
   });
-  return [search, title];
+  return { search, title };
 };
 
 const toLoop = async search => {
@@ -39,4 +39,4 @@ const toLoop = async search => {
   console.log(results);
 };
 
-toLoop('/wiki/Apple');
+module.exports = getLink;

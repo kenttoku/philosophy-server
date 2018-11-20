@@ -1,3 +1,9 @@
 type Query {
   packageName: String!
+  article: Article!
+}
+
+type Article {
+  title: String!
+  next: String!
 }
