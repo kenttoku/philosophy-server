@@ -2,22 +2,24 @@ const rp = require('request-promise');
 const cheerio = require('cheerio');
 const BASE_URL = 'https://en.wikipedia.org';
 
-const isValid = (ref, paragraph) => {
-  return;
-};
-
 const getLink = async search => {
   let html;
   try {
     html = await rp(BASE_URL + search);
   } catch (e) {
+    console.log('error');
     return;
   }
   let $ = cheerio.load(html);
   let title = ($('h1#firstHeading').text()).trim();
-  let links = await $('#mw-content-text > .mw-parser-output > p > a', html);
+  let links = await $('#mw-content-text > .mw-parser-output a', html);
   links.each((i, elm) => {
     search = $(elm).attr('href');
+    if (!/^\/wiki\//.test(search)) return true;
+
+    const parent = $(elm).parent()[0].name;
+    if (parent !== 'p' && parent !== 'li') return true;
+
     const parens = $(elm).parent().html().match(/\(([^)]+)\)/g);
     if (parens) {
       const parensText = parens.join('');
@@ -33,18 +35,6 @@ const getLink = async search => {
   $ = cheerio.load(html);
   const next = ($('h1#firstHeading').text()).trim();
   return { search, title, next };
-};
-
-const toLoop = async search => {
-  const results = [];
-  let title;
-
-  while (!results.includes(title)) {
-    results.push(title);
-    [search, title] = await getLink(search);
-  }
-  results[0] = results.indexOf(title);
-  console.log(results);
 };
 
 module.exports = getLink;
