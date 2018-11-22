@@ -7,15 +7,11 @@ const getLink = async search => {
   try {
     html = await rp(BASE_URL + search);
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log('error');
-    return;
+    html = await rp(BASE_URL + '/wiki/Error');
   }
   let $ = cheerio.load(html);
   $('table').remove();
   $('.thumbcaption').remove();
-  // console.log($.html());
-  console.log('running');
   let title = ($('h1#firstHeading').text()).trim();
 
   let links = await $('#mw-content-text > .mw-parser-output a');
