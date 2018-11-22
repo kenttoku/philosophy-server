@@ -3,6 +3,10 @@ type Query {
   article(search: String!): Article!
 }
 
+type Mutation {
+	createArticle(search: String!): Article!
+}
+
 type Article {
   title: String!
   next: String!

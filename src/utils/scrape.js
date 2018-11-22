@@ -13,6 +13,9 @@ const getLink = async search => {
   }
   let $ = cheerio.load(html);
   $('table').remove();
+  $('.thumbcaption').remove();
+  // console.log($.html());
+  console.log('running');
   let title = ($('h1#firstHeading').text()).trim();
 
   let links = await $('#mw-content-text > .mw-parser-output a');

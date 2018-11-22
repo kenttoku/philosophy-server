@@ -5,9 +5,11 @@ const mongoose = require('mongoose');
 const { DATABASE_URL } = require('../config');
 const typeDefs='./src/schema.graphql';
 const Query = require('./resolvers/query');
+const Mutation = require('./resolvers/mutation');
 
 const resolvers= {
-  Query
+  Query,
+  Mutation
 };
 
 const server = new GraphQLServer({
